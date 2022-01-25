@@ -1,0 +1,133 @@
+$container-padding: 30px;
+$common-text-color: #333333;
+
+$table-margin: 1.5rem;
+$table-border-color: #f0f0f0;
+$table-header-font-color: #000000;
+$table-cell-font-color: $common-text-color;
+$table-cell-padding: 18px;
+$table-border-width: 1px;
+$table-row-odd-bg-color: #e9ecef;
+
+.taro-richtext {
+  flex: 1;
+  padding: 0 $container-padding;
+  font-size: 25px;
+  line-height: 1;
+
+  .h5-h1,
+  .h5-h2,
+  .h5-h3,
+  .h5-h4,
+  .h5-h5,
+  .h5-h6 {
+    color: #333333;
+    font-weight: 600;
+  }
+
+  .h5-h1 {
+    font-size: 70px;
+    line-height: 1.4;
+    margin-bottom: 48px;
+  }
+
+  .h5-h2 {
+    font-size: 60px;
+    line-height: 1.4;
+    margin-bottom: 40px;
+  }
+
+  .h5-h3 {
+    font-size: 50px;
+    line-height: 1.4;
+    margin-bottom: 32px;
+  }
+
+  .h5-h4 {
+    font-size: 42px;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .h5-h5 {
+    font-size: 35px;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .h5-img {
+    width: 100%;
+  }
+
+  .h5-li {
+    position: relative;
+    color: #333;
+    font-size: 12px;
+    line-height: 19px;
+  }
+
+  .h5-blockquote {
+    margin: 1.4em 0;
+    padding-left: 1em;
+    line-height: 1.6;
+    word-break: break-all;
+    border-left: 4px solid #d3d3d3;
+
+    .h5-p {
+      color: #5a5a5a;
+    }
+  }
+
+  .h5-table {
+    width: 100%;
+    margin: $table-margin auto;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 1.5;
+    empty-cells: show;
+    overflow: auto hidden;
+  }
+
+  .h5-thead {
+    display: table-header-group;
+    vertical-align: middle;
+    color: $table-header-font-color;
+    font-weight: 600;
+  }
+
+  .h5-tbody {
+    display: table-row-group;
+    vertical-align: middle;
+
+    .h5-tr {
+      &:nth-child(odd) {
+        background-color: $table-row-odd-bg-color;
+      }
+    }
+  }
+
+  .h5-tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+  }
+
+  .h5-th,
+  .h5-td {
+    display: table-cell;
+    padding: $table-cell-padding;
+    color: $table-cell-font-color;
+    vertical-align: middle;
+    border: $table-border-width solid $table-border-color;
+  }
+
+  .h5-th {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .h5-td {
+    text-align: left;
+  }
+}
