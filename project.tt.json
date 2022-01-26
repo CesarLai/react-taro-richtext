@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "richtext-demo",
-  "appid": "testAppId",
+  "projectname": "react-taro-richtext",
+  "appid": "wx00a854b8ed3ed586",
   "setting": {
     "es6": false,
     "minified": false

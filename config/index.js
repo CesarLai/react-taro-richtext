@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'richtext-demo',
+  projectName: 'react-taro-richtext',
   date: '2022-1-24',
   designWidth: 750,
   deviceRatio: {
