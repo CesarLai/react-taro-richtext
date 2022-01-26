@@ -7,7 +7,7 @@ const WebViewPage: FC = () => {
   const { params } = useRouter<Record<'url', string>>()
 
   return (
-    <View className='webview-page'>
+    <View className="webview-page">
       <WebView src={params.url} />
     </View>
   )

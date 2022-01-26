@@ -30,7 +30,9 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "eslint": "eslint ./ --ext .ts,.tsx --color --fix",
+    "git-cz": "git-cz"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
@@ -61,7 +63,7 @@
     "babel-preset-taro": "3.4.0",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.20.0",
     "eslint-config-taro": "3.4.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
@@ -71,6 +73,8 @@
     "stylelint": "9.3.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-recommended-scss": "^4.3.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.21.0",
     "typescript": "^4.1.0"
   },
   "browserslist": [
