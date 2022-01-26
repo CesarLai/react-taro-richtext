@@ -1,10 +1,15 @@
 import { useCallback, useMemo } from 'react'
-import { TaroElement, document } from '@tarojs/runtime'
+import {
+  TaroElement,
+  document,
+  options as taroRuntimeOptions
+} from '@tarojs/runtime'
 import { FC } from '@tarojs/taro'
 import { ITouchEvent, View } from '@tarojs/components'
 import classNames from 'classnames'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
+import he from 'he'
 
 import './index.scss'
 import './markdown/code/vs2015.scss'
@@ -29,22 +34,18 @@ export interface TaroRichTextProps {
 
 const CONTAINER_ID = 'taro-richtext'
 
-// marked.use({
-//   renderer: {
-//     image: (href: string | null = '', title: string | null = '', text: string = '') => {
-//       return `<img src="${href}" alt="${text}" data-src="${href}" />`
-//     },
-//     link: (href: string | null = '', title: string | null = '', text: string = '') => {
-//       return `<a href="${href}" data-href="${href}">${text}</a>`
-//     }
-//   }
-// })
+if (taroRuntimeOptions.html) {
+  // 修改 Taro 文本渲染逻辑
+  taroRuntimeOptions.html.transformText = (taroText, text) => {
+    // 将HTML实体转义为原字符
+    taroText.textContent = he.unescape(taroText.textContent)
+    return taroText
+  }
+}
 
 const markedInstance = marked.setOptions({
   renderer: new marked.Renderer(),
-  highlight: function (code) {
-    return hljs.highlightAuto(code).value
-  },
+  highlight: (code) => hljs.highlightAuto(code).value
 })
 
 /**
@@ -91,7 +92,6 @@ const TaroRichText: FC<TaroRichTextProps> = (props) => {
     (target: TaroElement) => {
       const classAttr: string = target.props.class ?? ''
       const matchResult = /h5-(\w+)/gi.exec(classAttr)
-      console.log('isH5Tag', matchResult, classAttr)
 
       if (matchResult && matchResult[1]) {
         switch (matchResult[1]) {
