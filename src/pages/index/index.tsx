@@ -1,17 +1,15 @@
 import { useCallback, useMemo } from 'react'
 import Taro, { FC } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { ScrollView } from '@tarojs/components'
 import { MD_TEXT } from './markdownText'
-import TaroRichText, { RichTextEventCenter } from '../../components/TaroRichText'
+import TaroRichText, {
+  RichTextEventCenter
+} from '../../components/TaroRichText'
 
 import './index.scss'
 
 const Index: FC = () => {
   const imageEventHandler = useCallback((src: string) => {
-    // Taro.showToast({
-    //   title: '点击图片',
-    //   icon: 'success'
-    // })
     Taro.previewImage({
       current: src,
       urls: [src]
@@ -33,8 +31,12 @@ const Index: FC = () => {
   )
 
   return (
-    <ScrollView className='index'>
-      <TaroRichText content={MD_TEXT} type='markdown' eventCenter={richTextEvents} />
+    <ScrollView className="index">
+      <TaroRichText
+        content={MD_TEXT}
+        type="markdown"
+        eventCenter={richTextEvents}
+      />
     </ScrollView>
   )
 }
