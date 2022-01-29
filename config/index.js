@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
   projectName: 'react-taro-richtext',
   date: '2022-1-24',
@@ -53,6 +55,10 @@ const config = {
         }
       }
     }
+  },
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/styles': path.resolve(__dirname, '..', 'src/styles')
   }
 }
 
