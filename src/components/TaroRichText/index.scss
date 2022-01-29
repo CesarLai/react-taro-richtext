@@ -71,6 +71,7 @@ $table-row-odd-bg-color: #e9ecef;
     display: table;
     margin: $table-margin auto;
     width: 100%;
+    box-sizing: border-box;
     border: none;
     border-collapse: collapse;
     border-spacing: 2px;
