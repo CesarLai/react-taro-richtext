@@ -1,0 +1,18 @@
+.h5-p {
+  .image-wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    .h5-img {
+      margin: 0;
+    }
+
+    .title {
+      color: #808080;
+      font-size: 20px;
+      line-height: 60px;
+    }
+  }
+}

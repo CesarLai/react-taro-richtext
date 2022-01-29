@@ -1,0 +1,21 @@
+@import '../../../common/styles/vars.scss';
+
+.h5-pre {
+  margin: $pre-margin;
+  line-height: 1.5;
+  white-space: pre;
+
+  .h5-code {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.h5-code {
+  padding: $code-padding;
+  border-radius: $code-border-radius;
+}
+
+.h5-p .h5-code {
+  padding: $inline-code-padding;
+}

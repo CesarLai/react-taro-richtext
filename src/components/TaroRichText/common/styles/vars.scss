@@ -1,0 +1,24 @@
+@import '@/styles/size.scss';
+
+$common-font-size: 24px;
+$common-line-height: 28px;
+$common-block-margin: 36px;
+
+$blockquote-margin: $common-block-margin 0;
+$blockquote-padding: 0 0 0 28px;
+$blockquote-line-height: 1.4;
+$blockquote-border-size: 8px;
+
+$p-margin: $common-block-margin 0;
+$p-line-height: 42px;
+
+$inline-code-padding: 0 8px;
+
+$pre-margin: $common-block-margin 0;
+$code-padding: 24px;
+$code-border-radius: 6px;
+
+$list-margin: $common-block-margin 0;
+$list-line-height: 38px;
+$list-padding-inline-start: 2 * $common-font-size + $CONTAINER_PADDING - 5px;
+$list-item-font-size: 22px;

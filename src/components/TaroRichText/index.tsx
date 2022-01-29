@@ -1,18 +1,13 @@
 import { useCallback, useMemo } from 'react'
-import {
-  TaroElement,
-  document,
-  options as taroRuntimeOptions
-} from '@tarojs/runtime'
+import { TaroElement, document } from '@tarojs/runtime'
 import { FC } from '@tarojs/taro'
 import { ITouchEvent, View } from '@tarojs/components'
 import classNames from 'classnames'
-import { marked } from 'marked'
-import hljs from 'highlight.js'
-import he from 'he'
+
+import { withRuntimeTransform } from './transform'
+import { markedFactory } from './markdown'
 
 import './index.scss'
-import './markdown/code/vs2015.scss'
 
 export type ImageEventHandler = (src: string) => void
 
@@ -24,41 +19,38 @@ export interface RichTextEventCenter {
 }
 
 export interface TaroRichTextProps {
+  className?: string
   /** 富文本类型 */
   type?: 'html' | 'markdown'
   /** 富文本 */
   content?: string
+  /** 代码风格 */
+  codeTheme?: 'light' | 'dark'
   /** 事件中心，用于配置不同类型事件的事件监听函数 */
   eventCenter?: RichTextEventCenter
 }
 
 const CONTAINER_ID = 'taro-richtext'
 
-if (taroRuntimeOptions.html) {
-  // 修改 Taro 文本渲染逻辑
-  taroRuntimeOptions.html.transformText = (taroText, text) => {
-    // 将HTML实体转义为原字符
-    taroText.textContent = he.unescape(taroText.textContent)
-    return taroText
-  }
-}
-
-const markedInstance = marked.setOptions({
-  renderer: new marked.Renderer(),
-  highlight: (code) => hljs.highlightAuto(code).value
-})
+withRuntimeTransform()
 
 /**
  * Taro 富文本渲染组件
  */
 const TaroRichText: FC<TaroRichTextProps> = (props) => {
+  const markedInstance = useMemo(() => markedFactory(), [])
+
+  const codeStyles = useMemo(() => {
+    return require(`./markdown/code/styles/vs-${props.codeTheme}.module.scss`)
+  }, [props.codeTheme])
+
   const richText = useMemo(() => {
     if (props.type === 'markdown') {
       return markedInstance(props.content ?? '')
     }
 
     return props.content ?? ''
-  }, [props.content, props.type])
+  }, [props.content, props.type, markedInstance])
 
   /**
    * 图片点击事件分发函数
@@ -123,7 +115,11 @@ const TaroRichText: FC<TaroRichTextProps> = (props) => {
   return (
     <View
       id={CONTAINER_ID}
-      className={classNames(CONTAINER_ID)}
+      className={classNames(
+        CONTAINER_ID,
+        codeStyles[`vs-${props.codeTheme}`],
+        props.className
+      )}
       dangerouslySetInnerHTML={{ __html: richText }}
       onClick={onRootClick}
     />
@@ -132,7 +128,8 @@ const TaroRichText: FC<TaroRichTextProps> = (props) => {
 
 TaroRichText.defaultProps = {
   content: '',
-  type: 'html'
+  type: 'html',
+  codeTheme: 'light'
 }
 
 export default TaroRichText
